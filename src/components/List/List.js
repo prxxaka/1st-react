@@ -1,16 +1,26 @@
 import React from 'react'
 import ToDoCard from '../TodoCard/TodoCard'
 
-const List = ({ list, handleDone,handleDelete, search }) => {
+const List = ({
+                list,
+                handleDone,
+                handleDelete,
+                currentEdit,
+                handleChangeCurrent,
+                handleEdit
+              }) => {
   return (
-    <>
-      {list.filter((todo) => todo.title.toLowerCase().includes(search.toLowerCase())).map((todo) => <ToDoCard
-        key={todo.id}
-        todo={todo}
-        handleDone={handleDone}
-        handleDelete={handleDelete}
+      <>
+        {list.map(todo => <ToDoCard
+            key={todo.id}
+            todo={todo}
+            handleChangeCurrent={handleChangeCurrent}
+            handleDone={handleDone}
+            handleDelete={handleDelete}
+            currentEdit={todo.id === currentEdit}
+            handleEdit={handleEdit}
         />)}
-    </>
+      </>
   )
 }
 
